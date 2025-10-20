@@ -75,5 +75,24 @@ public class BigNumbers {
             return mul_array;
         }
     }
+
+    public int[] DivBigNumbers(int[] number1, int number2) {
+            int lenNumber = number1.length;
+            int[] div_arr = new int[lenNumber];
+            int remainder = 0;
+
+            for (int i = 0; i < lenNumber; i++) {
+                int cur = remainder * 10 + number1[i];
+                div_arr[i] = cur / number2;
+                remainder = cur % number2;
+            }
+            int startIndex = 0;
+            while (startIndex < lenNumber - 1 && div_arr[startIndex] == 0) {
+                startIndex++;
+            }
+            return Arrays.copyOfRange(div_arr, startIndex, lenNumber);
+        }
+
 }
+
 

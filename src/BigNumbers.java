@@ -18,5 +18,41 @@ public class BigNumbers {
             return sum_array;
         }
     }
+
+    public int[] diffBigNumbers(int[] number1, int[] number2) {
+        int lenNumber = number1.length;
+
+        for (int i = 0; i < lenNumber; i++) {
+            if (number1[i] > number2[i]) {
+                break;
+            } else if (number1[i] < number2[i]) {
+                throw new IllegalArgumentException("first number must be greater than or equal to second number");
+            }
+        }
+
+        int[] diff_array = new int[lenNumber];
+        int borrow = 0;
+        for (int i = lenNumber - 1; i >= 0; i--) {
+            int diff = number1[i] - borrow - number2[i];
+            if (diff < 0) {
+                diff += 10;
+                borrow = 1;
+            } else {
+                borrow = 0;
+            }
+            diff_array[i] = diff;
+        }
+        int start = 0;
+        while (start < diff_array.length - 1 && diff_array[start] == 0) {
+            start++;
+        }
+
+        int end = diff_array.length - 1;
+        while (end > start && diff_array[end] == 0) {
+            end--;
+        }
+
+        return Arrays.copyOfRange(diff_array, start, end + 1);
     }
+}
 

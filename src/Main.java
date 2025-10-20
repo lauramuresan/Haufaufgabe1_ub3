@@ -9,5 +9,7 @@ public class Main {
         int[] number2 = {8,2,3,4,5,3};
         int[] finalSum = bigNumbers.sumBigNumbers(number1, number2);
         System.out.println("Sum big numbers : " + Arrays.toString(finalSum));
+        int[] finalDiff = bigNumbers.diffBigNumbers(number1, number2);
+        System.out.println("Diff big numbers : " + Arrays.toString(finalDiff));
     }
 }

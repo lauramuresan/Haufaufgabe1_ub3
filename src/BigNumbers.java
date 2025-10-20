@@ -54,5 +54,26 @@ public class BigNumbers {
 
         return Arrays.copyOfRange(diff_array, start, end + 1);
     }
+
+    public int[] mulBigNumbers(int[] number1, int number2) {
+        int lenNumber = number1.length;
+        if (number2 < 0 || number2 > 9)
+            throw new IllegalArgumentException("second number must be between 0 and 9");
+        int[] mul_array = new int[lenNumber + 1];
+        int carry = 0;
+
+        for (int i = lenNumber - 1; i >= 0; i--) {
+            int prod = number1[i] * number2 + carry;
+            mul_array[i + 1] = prod % 10;
+            carry = prod / 10;
+        }
+        mul_array[0] = carry;
+
+        if (mul_array[0] == 0) {
+            return Arrays.copyOfRange(mul_array, 1, mul_array.length);
+        } else {
+            return mul_array;
+        }
+    }
 }
 
